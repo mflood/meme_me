@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -15,8 +15,20 @@ class ViewController: UIViewController {
     }
 
     @IBAction func presentImagePicker(_ sender: Any) {
-        let viewController = UIImagePickerController()
-        present(viewController, animated: true)
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        present(imagePicker, animated: true)
+    }
+    
+    @IBAction func presentCamera(_ sender: Any) {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+        {
+            let imagePicker = UIImagePickerController()
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            imagePicker.allowsEditing = true
+            imagePicker.delegate = self
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
     
     @IBAction func presentActivitycontroller(_ sender: Any) {
@@ -25,6 +37,8 @@ class ViewController: UIViewController {
         let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         self.present(controller, animated: true, completion: nil)
     }
+    
+
 
 }
 
