@@ -33,9 +33,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     
     @IBAction func presentActivitycontroller(_ sender: Any) {
 
-        let image = UIImage()
+     
+        let image = UIImage(named: "download",
+                            in: Bundle(for: type(of:self)),
+                            compatibleWith: nil)!
+        
         let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        // iPad is crashing without this...
+        controller.popoverPresentationController?.sourceView = self.view
         self.present(controller, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func apresentActivitycontroller(_ sender: Any) {
+
+        let image = UIImage()
+        //let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        //self.present(controller, animated: true, completion: nil)
+        let imagePicker = UIImagePickerController()
+        present(imagePicker, animated: true)
+        
     }
     
 
