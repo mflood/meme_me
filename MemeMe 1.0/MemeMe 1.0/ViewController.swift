@@ -17,6 +17,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     @IBOutlet var image: UIImageView? = nil
     @IBOutlet var topText: UITextField? = nil
     @IBOutlet var bottomText: UITextField? = nil
+    
+    @IBOutlet var toolbar: UIToolbar? = nil
+    @IBOutlet var navBar: UINavigationBar? = nil
+    
     // @IBOutlet var actionButton:
     
     // MARK: - Setup and Teardown
@@ -196,16 +200,35 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     func generateMemedImage() -> UIImage {
 
         // TODO: Hide toolbar and navbar
-
+        self.toolbar?.isHidden = true
+        self.navBar?.isHidden = true
+        
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
+        // UIGraphicsBeginImageContext(self.image!.frame.size)
+        // UIGraphicsBeginImageContext(<#T##size: CGSize##CGSize#>)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
 
         // TODO: Show toolbar and navbar
+        self.toolbar?.isHidden = false
+        self.navBar?.isHidden = false
+        
+        let frame = self.image!.frame
+        
+        let newFrame = CGRect(x: 0 + (self.view.frame.width/2 - self.image!.frame.width/2) ,
+                              y: 0  + (self.view.frame.height/2 - self.image!.frame.height/2),
+                                width: frame.width, height: frame.height)
+        
+        let sourceCGImage = memedImage.cgImage!
+        let croppedCGImage = sourceCGImage.cropping(
+            to: newFrame
+        )!
+        
 
-        return memedImage
+        let finalImage = UIImage(cgImage: croppedCGImage)
+        return finalImage
     }
     
     

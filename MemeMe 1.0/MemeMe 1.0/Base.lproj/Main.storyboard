@@ -105,6 +105,8 @@
                         <outlet property="cameraButton" destination="pkI-HQ-Hc7" id="Zxz-MP-KfP"/>
                         <outlet property="cancelButton" destination="lQ7-GZ-9uu" id="7xK-3H-nUT"/>
                         <outlet property="image" destination="a4z-RA-vW7" id="Hej-Ma-XWJ"/>
+                        <outlet property="navBar" destination="TRD-zt-EpH" id="UiM-lD-ebl"/>
+                        <outlet property="toolbar" destination="Bbt-7j-lPs" id="auP-t9-9B8"/>
                         <outlet property="topText" destination="cUI-If-hTw" id="xHd-5y-Wui"/>
                     </connections>
                 </viewController>
