@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
 
     @IBOutlet var cameraButton: UIBarButtonItem? = nil
     @IBOutlet var cancelButton: UIBarButtonItem? = nil
@@ -17,12 +17,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     @IBOutlet var bottomText: UITextField? = nil
     // @IBOutlet var actionButton:
     
+    func setupTextField(textfield: UITextField, initialText: String)
+    {
+        textfield.text = initialText
+        textfield.textAlignment = .center
+        textfield.delegate = self
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.actionButton?.isEnabled = false
         
+        self.setupTextField(textfield: self.topText!, initialText: "TOP")
+        self.setupTextField(textfield: self.bottomText!, initialText: "BOTTOM")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,8 +81,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
     }
     
     func resetView() {
-        self.topText?.text = ""
-        self.bottomText?.text = ""
+        self.topText?.text = "TOP"
+        self.bottomText?.text = "BOTTOM"
         self.image?.image = nil
     }
     
@@ -92,7 +101,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavi
         self.actionButton?.isEnabled = false
     }
     
-
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        // if textfield text is empty, should we reset TOP/BOTTOM
+        // or leave it blank?
+        
+    }
 
 }
 
