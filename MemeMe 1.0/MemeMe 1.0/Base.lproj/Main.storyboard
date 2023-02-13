@@ -58,7 +58,10 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="Title" id="xZe-MC-sQy"/>
+                                    <navigationItem title="Title" id="xZe-MC-sQy">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="aXG-Rk-Dah"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="lQ7-GZ-9uu"/>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                         </subviews>

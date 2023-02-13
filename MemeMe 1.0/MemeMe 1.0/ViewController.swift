@@ -9,6 +9,11 @@ import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
 
+    @IBOutlet var cameraButton: UIBarButtonItem? = nil
+    @IBOutlet var image: UIImage? = nil
+    // @IBOutlet var actionButton:
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
