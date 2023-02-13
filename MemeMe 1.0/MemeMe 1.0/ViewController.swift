@@ -147,7 +147,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         if let userImage =  info[key] as? UIImage {
             self.image?.image = userImage
         }
-        
     }
   
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -155,13 +154,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         self.actionButton?.isEnabled = false
     }
     
-    func getImage() -> UIImage {
-        let image = UIImage(named: "download",
-                            in: Bundle(for: type(of:self)),
-                            compatibleWith: nil)!
-        return image
-    }
     
+    // MARK: - Meme sharing
     
     @IBAction func presentActivitycontroller(_ sender: Any) {
 
@@ -170,9 +164,50 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         
         // iPad is crashing without this...
         controller.popoverPresentationController?.sourceView = self.view
+        controller.completionWithItemsHandler = {
+            (activityType: UIActivity.ActivityType?, completed: Bool, arrayReturnedItems: [Any]?, error: Error?) in
+            if completed {
+                print("Share completed")
+                self.save()
+                return
+            } else {
+                print("cancelled")
+            }
+        }
         
         self.present(controller, animated: true, completion: nil)
     }
+    
+    func save() {
+        // Create the meme
+        //let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: memedImage)
+    }
+    
+    func getImage() -> UIImage {
+        
+        return generateMemedImage()
+        
+        /*let image = UIImage(named: "download",
+                            in: Bundle(for: type(of:self)),
+                            compatibleWith: nil)!
+        return image */
+    }
+    
+    func generateMemedImage() -> UIImage {
+
+        // TODO: Hide toolbar and navbar
+
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        // TODO: Show toolbar and navbar
+
+        return memedImage
+    }
+    
     
     // MARK: - Cancel / Reset
     
@@ -185,6 +220,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         self.topText?.text = "TOP"
         self.bottomText?.text = "BOTTOM"
         self.image?.image = nil
+        self.actionButton?.isEnabled = false
     }
     
 
