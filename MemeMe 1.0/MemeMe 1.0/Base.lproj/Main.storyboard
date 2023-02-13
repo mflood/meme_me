@@ -59,8 +59,16 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="xZe-MC-sQy">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="aXG-Rk-Dah"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="lQ7-GZ-9uu"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="aXG-Rk-Dah">
+                                            <connections>
+                                                <action selector="presentActivitycontroller:" destination="BYZ-38-t0r" id="K3H-ht-kx5"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="lQ7-GZ-9uu">
+                                            <connections>
+                                                <action selector="handleCancel:" destination="BYZ-38-t0r" id="SIe-5e-e4B"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -68,6 +76,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <connections>
+                        <outlet property="actionButton" destination="aXG-Rk-Dah" id="OMZ-qb-Wjl"/>
+                        <outlet property="bottomText" destination="DHu-IU-5UX" id="aOq-0I-DCM"/>
+                        <outlet property="cameraButton" destination="pkI-HQ-Hc7" id="Zxz-MP-KfP"/>
+                        <outlet property="image" destination="a4z-RA-vW7" id="Hej-Ma-XWJ"/>
+                        <outlet property="topText" destination="cUI-If-hTw" id="xHd-5y-Wui"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
