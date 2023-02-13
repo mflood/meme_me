@@ -19,6 +19,31 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     @IBOutlet var bottomText: UITextField? = nil
     // @IBOutlet var actionButton:
     
+    // MARK: - Setup and Teardown
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        self.actionButton?.isEnabled = false
+        
+        self.setupTextField(textfield: self.topText!, initialText: "TOP")
+        self.setupTextField(textfield: self.bottomText!, initialText: "BOTTOM")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+
+        super.viewWillAppear(animated)
+        
+        subscribeToKeyboardNotifications()
+        self.cameraButton?.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+    }
+    
     func setupTextField(textfield: UITextField, initialText: String)
     {
         textfield.delegate = self
@@ -44,20 +69,55 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        self.actionButton?.isEnabled = false
-        
-        self.setupTextField(textfield: self.topText!, initialText: "TOP")
-        self.setupTextField(textfield: self.bottomText!, initialText: "BOTTOM")
+    
+    // MARK: - Text Fields
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.cameraButton?.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         
+        // if textfield text is empty, should we reset TOP/BOTTOM
+        // or leave it blank?
     }
 
+    
+    // MARK: - Keyboard adjusts view position
+    
+    func subscribeToKeyboardNotifications() {
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    func unsubscribeFromKeyboardNotifications() {
+
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+            
+            NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+        view.frame.origin.y = 0 - getKeyboardHeight(notification)
+    }
+    
+    
+    @objc func keyboardWillHide(_ notification:Notification) {
+        view.frame.origin.y = 0
+    }
+
+    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.cgRectValue.height
+    }
+    
+    // MARK: - Image picker and Camera
+    
     @IBAction func presentImagePicker(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -76,12 +136,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         }
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        print("Finished picking")
+        
+        picker.dismiss(animated: true)
+        
+        self.actionButton?.isEnabled = true
+        
+        let key = UIImagePickerController.InfoKey.originalImage
+        if let userImage =  info[key] as? UIImage {
+            self.image?.image = userImage
+        }
+        
+    }
+  
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+        self.actionButton?.isEnabled = false
+    }
+    
     func getImage() -> UIImage {
         let image = UIImage(named: "download",
                             in: Bundle(for: type(of:self)),
                             compatibleWith: nil)!
         return image
     }
+    
     
     @IBAction func presentActivitycontroller(_ sender: Any) {
 
@@ -94,6 +174,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         self.present(controller, animated: true, completion: nil)
     }
     
+    // MARK: - Cancel / Reset
+    
     @IBAction func handleCancel(_ sender: Any) {
         print("cancelled")
         self.resetView()
@@ -105,30 +187,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         self.image?.image = nil
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("Finished picking")
-        
-        picker.dismiss(animated: true)
-        
-        self.actionButton?.isEnabled = true
-        
-    }
-        
-  
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true)
-        self.actionButton?.isEnabled = false
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        // if textfield text is empty, should we reset TOP/BOTTOM
-        // or leave it blank?
-        
-    }
+
 
 }
 
