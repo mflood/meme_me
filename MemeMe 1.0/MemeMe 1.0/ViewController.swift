@@ -126,7 +126,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         view.frame.origin.y = 0 - getKeyboardHeight(notification)
     }
     
-    
     @objc func keyboardWillHide(_ notification:Notification) {
         view.frame.origin.y = 0
     }
