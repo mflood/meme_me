@@ -7,6 +7,8 @@
 
 import UIKit
 
+let debug: Bool = true
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
 
     @IBOutlet var cameraButton: UIBarButtonItem? = nil
@@ -35,6 +37,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         textfield.textAlignment = .center
             
         textfield.text = initialText
+        
+        if debug {
+            // so we can see button
+            textfield.backgroundColor = .yellow
+        }
     }
     
     override func viewDidLoad() {
