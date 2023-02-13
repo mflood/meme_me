@@ -9,6 +9,14 @@ import UIKit
 
 let debug: Bool = false
 
+struct Meme {
+    let topText: String
+    let bottomText: String
+    let originalImage: UIImage
+    let memedImage: UIImage
+}
+
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
 
     @IBOutlet var cameraButton: UIBarButtonItem? = nil
@@ -20,6 +28,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     
     @IBOutlet var toolbar: UIToolbar? = nil
     @IBOutlet var navBar: UINavigationBar? = nil
+    
+    var isEditingBottomTextfield: Bool = false
     
     // @IBOutlet var actionButton:
     
@@ -78,6 +88,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.text = ""
+        if textField == self.bottomText {
+            isEditingBottomTextfield = true
+        } else {
+            isEditingBottomTextfield = false
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -105,6 +120,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
+        guard self.isEditingBottomTextfield else {
+            return
+        }
         view.frame.origin.y = 0 - getKeyboardHeight(notification)
     }
     
@@ -172,7 +190,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
             (activityType: UIActivity.ActivityType?, completed: Bool, arrayReturnedItems: [Any]?, error: Error?) in
             if completed {
                 print("Share completed")
-                self.save()
+                self.save(memedImage: image)
                 return
             } else {
                 print("cancelled")
@@ -182,9 +200,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         self.present(controller, animated: true, completion: nil)
     }
     
-    func save() {
+    func save(memedImage: UIImage) {
         // Create the meme
-        //let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: memedImage)
+        let meme = Meme(topText: self.topText!.text!,
+                        bottomText: self.bottomText!.text!,
+                        originalImage: self.image!.image!,
+                        memedImage: memedImage)
     }
     
     func getImage() -> UIImage {
