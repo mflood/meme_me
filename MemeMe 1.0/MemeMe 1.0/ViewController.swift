@@ -7,7 +7,7 @@
 
 import UIKit
 
-let debug: Bool = true
+let debug: Bool = false
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
 
@@ -27,7 +27,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
                     NSAttributedString.Key.strokeColor: UIColor.black,
                     NSAttributedString.Key.foregroundColor: UIColor.white,
                     NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-                    NSAttributedString.Key.strokeWidth:  4.0
+                    NSAttributedString.Key.strokeWidth:  -6.0
                 ]
                 
         textfield.defaultTextAttributes = memeTextAttributes
