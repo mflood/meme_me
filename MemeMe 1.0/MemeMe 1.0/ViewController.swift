@@ -37,6 +37,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
         self.actionButton?.isEnabled = false
         
@@ -45,9 +46,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     }
     
     override func viewWillAppear(_ animated: Bool) {
-
         super.viewWillAppear(animated)
-        
+
         subscribeToKeyboardNotifications()
         self.cameraButton?.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
