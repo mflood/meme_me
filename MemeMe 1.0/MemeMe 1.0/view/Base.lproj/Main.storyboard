@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="-782" y="-620"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Created Memes Collection View Controller-->
         <scene sceneID="Ebf-C6-Kdi">
             <objects>
-                <collectionViewController id="u33-Hw-TZ8" sceneMemberID="viewController">
+                <collectionViewController id="u33-Hw-TZ8" customClass="CreatedMemesCollectionViewController" customModule="MemeMe_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="wcy-Mh-CIj">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -61,22 +61,32 @@
             </objects>
             <point key="canvasLocation" x="123" y="130"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Created Memes Table View Controller-->
         <scene sceneID="l0F-ia-ZxE">
             <objects>
-                <tableViewController id="j9l-xD-zlw" sceneMemberID="viewController">
+                <tableViewController id="j9l-xD-zlw" customClass="CreatedMemesTableViewController" customModule="MemeMe_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="uyB-X5-AqM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ohg-xz-4bW">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemeTableViewCell" textLabel="oxv-cK-5KK" style="IBUITableViewCellStyleDefault" id="ohg-xz-4bW">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ohg-xz-4bW" id="yEo-UF-pMI">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="oxv-cK-5KK">
+                                            <rect key="frame" x="20" y="0.0" width="353" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -85,6 +95,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="zLr-6Q-G3P"/>
+                    <connections>
+                        <outlet property="tableView" destination="uyB-X5-AqM" id="0pM-7w-6zM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dFn-RE-eIf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -236,6 +249,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
