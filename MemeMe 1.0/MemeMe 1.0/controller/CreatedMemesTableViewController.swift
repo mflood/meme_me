@@ -17,6 +17,18 @@ class CreatedMemesTableViewController: UITableViewController {
     
     @objc func presentEditMeme() {
             debugPrint("clicked")
+        
+        
+        // Grab the DetailVC from Storyboard
+     let editMemeViewController = self.storyboard!.instantiateViewController(withIdentifier: "EditMemeViewController") as! EditMemeViewController
+
+        //Populate view controller with data from the selected item
+       // detailController.villain = allVillains[(indexPath as NSIndexPath).row]
+
+        // Present the view controller using navigation
+        navigationController!.pushViewController(editMemeViewController, animated: true)
+        
+        
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
