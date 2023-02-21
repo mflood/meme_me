@@ -11,7 +11,7 @@ let debug: Bool = false
 
 
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
+class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
 
     @IBOutlet var cameraButton: UIBarButtonItem? = nil
     @IBOutlet var cancelButton: UIBarButtonItem? = nil
