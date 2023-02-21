@@ -87,9 +87,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
-                                <connections>
-                                    <segue destination="aSH-fX-HhJ" kind="show" id="O7Q-9V-NJf"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -127,7 +124,7 @@
         <!--View Controller-->
         <scene sceneID="G3w-bx-dL1">
             <objects>
-                <viewController id="aSH-fX-HhJ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeDetailViewController" id="aSH-fX-HhJ" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jZ1-sO-npu">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -138,7 +135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhZ-mp-ybW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="958" y="-894"/>
+            <point key="canvasLocation" x="1062" y="-894"/>
         </scene>
         <!--Edit Meme View Controller-->
         <scene sceneID="tne-QT-ifu">
