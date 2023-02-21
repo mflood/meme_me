@@ -11,6 +11,12 @@ class CreatedMemesTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentEditMeme))
+    }
+    
+    @objc func presentEditMeme() {
+            debugPrint("clicked")
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
