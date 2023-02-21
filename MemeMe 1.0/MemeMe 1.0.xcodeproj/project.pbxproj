@@ -58,13 +58,11 @@
 		6F3469DA299819DB000E010F /* MemeMe 1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				6F45B17729A5335F00E34D39 /* controller */,
 				6F45B17329A52A6400E34D39 /* model */,
+				6F45B17629A5334C00E34D39 /* view */,
 				6F3469DB299819DB000E010F /* AppDelegate.swift */,
 				6F3469DD299819DB000E010F /* SceneDelegate.swift */,
-				6F3469DF299819DB000E010F /* ViewController.swift */,
-				6F3469E1299819DB000E010F /* Main.storyboard */,
-				6F3469E4299819DB000E010F /* Assets.xcassets */,
-				6F3469E6299819DB000E010F /* LaunchScreen.storyboard */,
 				6F3469E9299819DB000E010F /* Info.plist */,
 			);
 			path = "MemeMe 1.0";
@@ -76,6 +74,24 @@
 				6F45B17429A52A7D00E34D39 /* Meme.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		6F45B17629A5334C00E34D39 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				6F3469E1299819DB000E010F /* Main.storyboard */,
+				6F3469E4299819DB000E010F /* Assets.xcassets */,
+				6F3469E6299819DB000E010F /* LaunchScreen.storyboard */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		6F45B17729A5335F00E34D39 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				6F3469DF299819DB000E010F /* ViewController.swift */,
+			);
+			path = controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
