@@ -9,12 +9,6 @@ import UIKit
 
 let debug: Bool = false
 
-struct Meme {
-    let topText: String
-    let bottomText: String
-    let originalImage: UIImage
-    let memedImage: UIImage
-}
 
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextFieldDelegate, UINavigationControllerDelegate {
@@ -49,7 +43,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         super.viewWillAppear(animated)
 
         subscribeToKeyboardNotifications()
+        
+#if targetEnvironment(simulator)
+        self.cameraButton?.isEnabled = false;
+#else
         self.cameraButton?.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+#endif
+        
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,7 +67,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
                     NSAttributedString.Key.strokeColor: UIColor.black,
                     NSAttributedString.Key.foregroundColor: UIColor.white,
                     NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-                    NSAttributedString.Key.strokeWidth:  -6.0
+                    NSAttributedString.Key.strokeWidth:  -3.5
                 ]
                 
         textfield.defaultTextAttributes = memeTextAttributes
@@ -123,7 +124,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         guard self.isEditingBottomTextfield else {
             return
         }
-        view.frame.origin.y = 0 - getKeyboardHeight(notification)
+        view.frame.origin.y = -getKeyboardHeight(notification)
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
@@ -139,26 +140,27 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     
     // MARK: - Image picker and Camera
     
-    @IBAction func presentImagePicker(_ sender: Any) {
+    func presentPicker(sourceType: UIImagePickerController.SourceType) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
         present(imagePicker, animated: true)
+    }
+    
+    @IBAction func presentImagePicker(_ sender: Any) {
+        self.presentPicker(sourceType: .photoLibrary)
     }
     
     @IBAction func presentCamera(_ sender: Any) {
         if(UIImagePickerController .isSourceTypeAvailable(.camera))
         {
-            let imagePicker = UIImagePickerController()
-            imagePicker.sourceType = UIImagePickerController.SourceType.camera
-            imagePicker.allowsEditing = true
-            imagePicker.delegate = self
-            self.present(imagePicker, animated: true, completion: nil)
+            self.presentPicker(sourceType: .camera)
         }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("Finished picking")
+        debugPrint("Finished picking")
         
         picker.dismiss(animated: true)
         
@@ -188,11 +190,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         controller.completionWithItemsHandler = {
             (activityType: UIActivity.ActivityType?, completed: Bool, arrayReturnedItems: [Any]?, error: Error?) in
             if completed {
-                print("Share completed")
+                debugPrint("Share completed")
                 self.save(memedImage: image)
                 return
             } else {
-                print("cancelled")
+                debugPrint("cancelled")
             }
         }
         
@@ -208,13 +210,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     }
     
     func getImage() -> UIImage {
-        
         return generateMemedImage()
-        
-        /*let image = UIImage(named: "download",
-                            in: Bundle(for: type(of:self)),
-                            compatibleWith: nil)!
-        return image */
     }
     
     func generateMemedImage() -> UIImage {
@@ -225,8 +221,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
         
         // Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
-        // UIGraphicsBeginImageContext(self.image!.frame.size)
-        // UIGraphicsBeginImageContext(<#T##size: CGSize##CGSize#>)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
@@ -255,7 +249,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UITextF
     // MARK: - Cancel / Reset
     
     @IBAction func handleCancel(_ sender: Any) {
-        print("cancelled")
+        debugPrint("cancelled")
         self.resetView()
     }
     
