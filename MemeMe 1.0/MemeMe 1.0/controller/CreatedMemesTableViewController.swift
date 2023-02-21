@@ -43,14 +43,17 @@ class CreatedMemesTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("selected")
         
-        let detailController = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! UIViewController
+        let detailController = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+        
+        let testImage = UIImage(named: "test")!
+        
+        detailController.meme = Meme(topText: "this be top", bottomText: "this be vottom", originalImage: testImage, memedImage: testImage)
         
         //let detailController = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! VillainDetailViewController
         
         // detailController.villain = allVillains[indexPath.row]
         navigationController?.pushViewController(detailController, animated: true)
 
-        
         return
     }
 }

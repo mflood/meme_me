@@ -121,21 +121,48 @@
             </objects>
             <point key="canvasLocation" x="-2121" y="-201"/>
         </scene>
-        <!--View Controller-->
+        <!--Meme Detail View Controller-->
         <scene sceneID="G3w-bx-dL1">
             <objects>
-                <viewController storyboardIdentifier="MemeDetailViewController" id="aSH-fX-HhJ" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemeDetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aSH-fX-HhJ" customClass="MemeDetailViewController" customModule="MemeMe_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jZ1-sO-npu">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="gB0-js-25I">
+                                <rect key="frame" x="0.0" y="59" width="391" height="148.33333333333337"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNi-eI-MEn">
+                                        <rect key="frame" x="0.0" y="0.0" width="391" height="128"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSH-Mz-eDk">
+                                        <rect key="frame" x="0.0" y="127.99999999999999" width="391" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="LNi-eI-MEn" secondAttribute="trailing" id="0bO-o5-Y9m"/>
+                                    <constraint firstItem="LNi-eI-MEn" firstAttribute="leading" secondItem="gB0-js-25I" secondAttribute="leading" id="Eiz-sz-SyM"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="b6U-mm-cJx"/>
                         <color key="backgroundColor" systemColor="systemMintColor"/>
+                        <constraints>
+                            <constraint firstItem="b6U-mm-cJx" firstAttribute="bottom" secondItem="gB0-js-25I" secondAttribute="bottom" id="D5w-Br-FsH"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8jk-lr-kPO"/>
+                    <connections>
+                        <outlet property="memeImage" destination="LNi-eI-MEn" id="Al8-yW-alz"/>
+                        <outlet property="topText" destination="nSH-Mz-eDk" id="eFD-0G-5Cj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WhZ-mp-ybW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1062" y="-894"/>
+            <point key="canvasLocation" x="1055.7251908396945" y="-894.36619718309862"/>
         </scene>
         <!--Edit Meme View Controller-->
         <scene sceneID="tne-QT-ifu">
