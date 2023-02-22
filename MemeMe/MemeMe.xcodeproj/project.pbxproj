@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6F3469D8299819DB000E010F /* MemeMe 1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MemeMe 1.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F3469D8299819DB000E010F /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F3469DB299819DB000E010F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F3469DD299819DB000E010F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6F3469DF299819DB000E010F /* EditMemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMemeViewController.swift; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		6F3469CF299819DB000E010F = {
 			isa = PBXGroup;
 			children = (
-				6F3469DA299819DB000E010F /* MemeMe 1.0 */,
+				6F3469DA299819DB000E010F /* MemeMe */,
 				6F3469D9299819DB000E010F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,12 +58,12 @@
 		6F3469D9299819DB000E010F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6F3469D8299819DB000E010F /* MemeMe 1.0.app */,
+				6F3469D8299819DB000E010F /* MemeMe.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6F3469DA299819DB000E010F /* MemeMe 1.0 */ = {
+		6F3469DA299819DB000E010F /* MemeMe */ = {
 			isa = PBXGroup;
 			children = (
 				6F45B17729A5335F00E34D39 /* controller */,
@@ -73,7 +73,7 @@
 				6F3469DD299819DB000E010F /* SceneDelegate.swift */,
 				6F3469E9299819DB000E010F /* Info.plist */,
 			);
-			path = "MemeMe 1.0";
+			path = MemeMe;
 			sourceTree = "<group>";
 		};
 		6F45B17329A52A6400E34D39 /* model */ = {
@@ -109,9 +109,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6F3469D7299819DB000E010F /* MemeMe 1.0 */ = {
+		6F3469D7299819DB000E010F /* MemeMe */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6F3469EC299819DB000E010F /* Build configuration list for PBXNativeTarget "MemeMe 1.0" */;
+			buildConfigurationList = 6F3469EC299819DB000E010F /* Build configuration list for PBXNativeTarget "MemeMe" */;
 			buildPhases = (
 				6F3469D4299819DB000E010F /* Sources */,
 				6F3469D5299819DB000E010F /* Frameworks */,
@@ -121,9 +121,9 @@
 			);
 			dependencies = (
 			);
-			name = "MemeMe 1.0";
+			name = MemeMe;
 			productName = "MemeMe 1.0";
-			productReference = 6F3469D8299819DB000E010F /* MemeMe 1.0.app */;
+			productReference = 6F3469D8299819DB000E010F /* MemeMe.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -141,7 +141,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 6F3469D3299819DB000E010F /* Build configuration list for PBXProject "MemeMe 1.0" */;
+			buildConfigurationList = 6F3469D3299819DB000E010F /* Build configuration list for PBXProject "MemeMe" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -154,7 +154,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6F3469D7299819DB000E010F /* MemeMe 1.0 */,
+				6F3469D7299819DB000E010F /* MemeMe */,
 			);
 		};
 /* End PBXProject section */
@@ -334,6 +334,8 @@
 				DEVELOPMENT_TEAM = L8695SQ572;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MemeMe 1.0/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "If camera is enabled, you can create memes from pictures you take.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Create memes from pictures in your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -344,7 +346,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "flood.MemeMe-1-0";
+				PRODUCT_BUNDLE_IDENTIFIER = flood.MemeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -362,6 +364,8 @@
 				DEVELOPMENT_TEAM = L8695SQ572;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "MemeMe 1.0/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "If camera is enabled, you can create memes from pictures you take.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Create memes from pictures in your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -372,7 +376,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "flood.MemeMe-1-0";
+				PRODUCT_BUNDLE_IDENTIFIER = flood.MemeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -383,7 +387,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6F3469D3299819DB000E010F /* Build configuration list for PBXProject "MemeMe 1.0" */ = {
+		6F3469D3299819DB000E010F /* Build configuration list for PBXProject "MemeMe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6F3469EA299819DB000E010F /* Debug */,
@@ -392,7 +396,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6F3469EC299819DB000E010F /* Build configuration list for PBXNativeTarget "MemeMe 1.0" */ = {
+		6F3469EC299819DB000E010F /* Build configuration list for PBXNativeTarget "MemeMe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				6F3469ED299819DB000E010F /* Debug */,
