@@ -207,6 +207,12 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
                         bottomText: self.bottomText!.text!,
                         originalImage: self.image!.image!,
                         memedImage: memedImage)
+        
+        // Add it to the memes array in the Application Delegate
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
+        
     }
     
     func getImage() -> UIImage {
