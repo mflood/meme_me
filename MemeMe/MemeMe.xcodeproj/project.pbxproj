@@ -122,7 +122,7 @@
 			dependencies = (
 			);
 			name = MemeMe;
-			productName = "MemeMe 1.0";
+			productName = "MemeMe";
 			productReference = 6F3469D8299819DB000E010F /* MemeMe.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -333,7 +333,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8695SQ572;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MemeMe 1.0/Info.plist";
+				INFOPLIST_FILE = "MemeMe/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "If camera is enabled, you can create memes from pictures you take.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Create memes from pictures in your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -363,7 +363,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L8695SQ572;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "MemeMe 1.0/Info.plist";
+				INFOPLIST_FILE = "MemeMe/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "If camera is enabled, you can create memes from pictures you take.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Create memes from pictures in your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
