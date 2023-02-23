@@ -24,11 +24,23 @@ class CreatedMemesTableViewController: UITableViewController, MemeCollectionChan
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentEditMeme))
         navigationItem.title = "Sent Memes"
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        let skinnyside = min(view.frame.size.width, view.frame.size.height)
+        self.tableView.rowHeight = skinnyside / 3.0
+        
         self.tableView.reloadData()
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let skinnyside = min(view.frame.size.width, view.frame.size.height)
+        self.tableView.rowHeight = skinnyside / 3.0
+    }
+    
     
     @objc func presentEditMeme() {
         
@@ -59,8 +71,10 @@ class CreatedMemesTableViewController: UITableViewController, MemeCollectionChan
         let meme = self.memes[(indexPath as NSIndexPath).row]
         
         // Set the name and image
-        cell.textLabel?.text = meme.topText
+        cell.textLabel?.text = "\(meme.topText) ... \(meme.bottomText)"
         cell.imageView?.image = meme.memedImage
+        
+        
         
         // If the cell has a detail label, we will put the evil scheme in.
         if let detailTextLabel = cell.detailTextLabel {
