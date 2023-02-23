@@ -8,7 +8,9 @@
 
 import UIKit
 
-class CreatedMemesCollectionViewController: UICollectionViewController {
+class CreatedMemesCollectionViewController: UICollectionViewController, MemeCollectionChangeListener {
+    
+
     
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
@@ -18,6 +20,13 @@ class CreatedMemesCollectionViewController: UICollectionViewController {
     
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
+    func handleMemeCollectionChanged() {
+        self.collectionView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.collectionView.reloadData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,18 +41,16 @@ class CreatedMemesCollectionViewController: UICollectionViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentEditMeme))
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.collectionView.reloadData()
-    }
-    
+
     @objc func presentEditMeme() {
         
         // Grab the DetailVC from Storyboard
         let editMemeViewController = self.storyboard!.instantiateViewController(withIdentifier: "EditMemeViewController") as! EditMemeViewController
 
-        // Present the view controller using navigation
-        navigationController!.pushViewController(editMemeViewController, animated: true)
+        // we will be notified if/when the meme collection changes
+        editMemeViewController.memeCollectionChangeListener = self
+        
+        self.present(editMemeViewController, animated: true)
         
     }
     

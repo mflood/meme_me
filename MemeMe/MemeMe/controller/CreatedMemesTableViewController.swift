@@ -7,8 +7,11 @@
 
 import UIKit
 
-class CreatedMemesTableViewController: UITableViewController {
+class CreatedMemesTableViewController: UITableViewController, MemeCollectionChangeListener {
     
+    func handleMemeCollectionChanged() {
+        self.tableView.reloadData()
+    }
     
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
@@ -31,9 +34,11 @@ class CreatedMemesTableViewController: UITableViewController {
         // Grab the DetailVC from Storyboard
         let editMemeViewController = self.storyboard!.instantiateViewController(withIdentifier: "EditMemeViewController") as! EditMemeViewController
 
-        // Present the view controller using navigation
-        navigationController!.pushViewController(editMemeViewController, animated: true)
+        // we will be notified if/when the meme collection changes
+        editMemeViewController.memeCollectionChangeListener = self
         
+        // Present the view controller using navigation
+        self.present(editMemeViewController, animated: true)
         
     }
     

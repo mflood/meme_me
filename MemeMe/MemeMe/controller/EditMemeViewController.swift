@@ -25,6 +25,8 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
     
     var isEditingBottomTextfield: Bool = false
     
+    var memeCollectionChangeListener: MemeCollectionChangeListener? = nil
+
     // @IBOutlet var actionButton:
     
     // MARK: - Setup and Teardown
@@ -192,6 +194,7 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
             if completed {
                 debugPrint("Share completed")
                 self.save(memedImage: image)
+                self.dismiss(animated: true)
                 return
             } else {
                 debugPrint("cancelled")
@@ -212,6 +215,8 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
+        
+        memeCollectionChangeListener?.handleMemeCollectionChanged()
         
     }
     
@@ -256,7 +261,7 @@ class EditMemeViewController: UIViewController, UIImagePickerControllerDelegate,
     
     @IBAction func handleCancel(_ sender: Any) {
         debugPrint("cancelled")
-        self.resetView()
+        self.dismiss(animated: true)
     }
     
     func resetView() {

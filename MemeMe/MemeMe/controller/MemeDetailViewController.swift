@@ -10,7 +10,6 @@ import UIKit
 
 class MemeDetailViewController: UIViewController {
     
-    @IBOutlet weak var topText: UILabel!
     @IBOutlet weak var memeImage: UIImageView!
     var meme: Meme? = nil
     
@@ -19,7 +18,6 @@ class MemeDetailViewController: UIViewController {
         super.viewDidLoad()
         
         if let meme = self.meme {
-            self.topText.text = meme.topText
             self.memeImage.image = meme.memedImage
         }
      
