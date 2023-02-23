@@ -68,9 +68,7 @@ class CreatedMemesTableViewController: UITableViewController {
         print("selected")
         
         let detailController = storyboard?.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
-        
-        let testImage = UIImage(named: "test")!
-        
+
         let meme = self.memes[(indexPath as NSIndexPath).row]
         
         detailController.meme = meme
