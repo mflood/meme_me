@@ -24,18 +24,12 @@ class CreatedMemesTableViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         self.tableView.reloadData()
-        
     }
     
     @objc func presentEditMeme() {
-            debugPrint("clicked")
-        
         
         // Grab the DetailVC from Storyboard
-     let editMemeViewController = self.storyboard!.instantiateViewController(withIdentifier: "EditMemeViewController") as! EditMemeViewController
-
-        //Populate view controller with data from the selected item
-       // detailController.villain = allVillains[(indexPath as NSIndexPath).row]
+        let editMemeViewController = self.storyboard!.instantiateViewController(withIdentifier: "EditMemeViewController") as! EditMemeViewController
 
         // Present the view controller using navigation
         navigationController!.pushViewController(editMemeViewController, animated: true)
@@ -57,9 +51,6 @@ class CreatedMemesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemeTableViewCell")!
         
         let meme = self.memes[(indexPath as NSIndexPath).row]
-        
-        
-        // let villain = self.allVillains[(indexPath as NSIndexPath).row]
         
         // Set the name and image
         cell.textLabel?.text = meme.topText

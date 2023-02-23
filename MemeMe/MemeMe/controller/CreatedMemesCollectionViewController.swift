@@ -10,7 +10,11 @@ import UIKit
 
 class CreatedMemesCollectionViewController: UICollectionViewController {
     
-    
+    var memes: [Meme]! {
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        return appDelegate.memes
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,15 +22,14 @@ class CreatedMemesCollectionViewController: UICollectionViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentEditMeme))
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.collectionView.reloadData()
+    }
     
     @objc func presentEditMeme() {
-            debugPrint("clicked")
         
         // Grab the DetailVC from Storyboard
-     let editMemeViewController = self.storyboard!.instantiateViewController(withIdentifier: "EditMemeViewController") as! EditMemeViewController
-
-        //Populate view controller with data from the selected item
-       // detailController.villain = allVillains[(indexPath as NSIndexPath).row]
+        let editMemeViewController = self.storyboard!.instantiateViewController(withIdentifier: "EditMemeViewController") as! EditMemeViewController
 
         // Present the view controller using navigation
         navigationController!.pushViewController(editMemeViewController, animated: true)
@@ -39,20 +42,17 @@ class CreatedMemesCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return self.memes.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
      
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MemeCollectionViewCell", for: indexPath) as! MemeCollectionViewCell
+        let meme = self.memes[(indexPath as NSIndexPath).row]
         
-        cell.theImage.image = UIImage(named: "test")
-        cell.theLabel.text = "hi"
-            // let villain = self.allVillains[(indexPath as NSIndexPath).row]
-
-
-
-            return cell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MemeCollectionViewCell", for: indexPath) as! MemeCollectionViewCell
+        cell.theImage.image = meme.memedImage
+       
+        return cell
         
     }
 }
