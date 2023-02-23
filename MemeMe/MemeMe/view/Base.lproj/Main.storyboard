@@ -157,7 +157,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b6U-mm-cJx"/>
                         <constraints>
-                            <constraint firstItem="LNi-eI-MEn" firstAttribute="top" secondItem="jZ1-sO-npu" secondAttribute="top" id="3ww-7y-VsW"/>
+                            <constraint firstItem="LNi-eI-MEn" firstAttribute="top" secondItem="b6U-mm-cJx" secondAttribute="top" constant="-59" id="3ww-7y-VsW"/>
                             <constraint firstItem="b6U-mm-cJx" firstAttribute="bottom" secondItem="LNi-eI-MEn" secondAttribute="bottom" id="ACW-3Z-tff"/>
                             <constraint firstItem="LNi-eI-MEn" firstAttribute="leading" secondItem="b6U-mm-cJx" secondAttribute="leading" id="Bcf-Js-SYT"/>
                             <constraint firstItem="b6U-mm-cJx" firstAttribute="trailing" secondItem="LNi-eI-MEn" secondAttribute="trailing" id="oTe-Dl-wC9"/>

@@ -40,6 +40,8 @@ class CreatedMemesCollectionViewController: UICollectionViewController, MemeColl
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentEditMeme))
+        navigationItem.title = "Sent Memes"
+        
     }
 
     @objc func presentEditMeme() {

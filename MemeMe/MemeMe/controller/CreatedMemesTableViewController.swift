@@ -23,6 +23,7 @@ class CreatedMemesTableViewController: UITableViewController, MemeCollectionChan
         super.viewDidLoad()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentEditMeme))
+        navigationItem.title = "Sent Memes"
     }
     
     override func viewWillAppear(_ animated: Bool) {
