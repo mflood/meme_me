@@ -16,13 +16,24 @@ class CreatedMemesCollectionViewController: UICollectionViewController {
         return appDelegate.memes
     }
     
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        let space:CGFloat = 3.0
+        let dimension = (view.frame.size.width - (2 * space)) / 2.0
+
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = space
+        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentEditMeme))
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.collectionView.reloadData()
     }
     
