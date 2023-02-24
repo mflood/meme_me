@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CreatedMemesTableViewController: UITableViewController, MemeCollectionChangeListener {
+class SentMemesTableViewController: UITableViewController, MemeCollectionChangeListener {
     
     func handleMemeCollectionChanged() {
         self.tableView.reloadData()

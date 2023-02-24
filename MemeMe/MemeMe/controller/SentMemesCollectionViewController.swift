@@ -8,17 +8,16 @@
 
 import UIKit
 
-class CreatedMemesCollectionViewController: UICollectionViewController, MemeCollectionChangeListener {
+class SentMemesCollectionViewController: UICollectionViewController, MemeCollectionChangeListener {
     
-
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    
     
     var memes: [Meme]! {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         return appDelegate.memes
     }
-    
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     func handleMemeCollectionChanged() {
         self.collectionView.reloadData()
@@ -31,7 +30,8 @@ class CreatedMemesCollectionViewController: UICollectionViewController, MemeColl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        // Calculate size for collection items
+        //
         let space:CGFloat = 3.0
         let dimension = (view.frame.size.width - (2 * space)) / 2.0
 
@@ -39,23 +39,25 @@ class CreatedMemesCollectionViewController: UICollectionViewController, MemeColl
         flowLayout.minimumLineSpacing = space
         flowLayout.itemSize = CGSize(width: dimension, height: dimension)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentEditMeme))
+        // configure the navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                            target: self,
+                                                            action: #selector(presentEditMeme))
         navigationItem.title = "Sent Memes"
         
     }
 
     @objc func presentEditMeme() {
         
-        // Grab the DetailVC from Storyboard
+        // Grab the EditMemeViewController from Storyboard
         let editMemeViewController = self.storyboard!.instantiateViewController(withIdentifier: "EditMemeViewController") as! EditMemeViewController
 
-        // we will be notified if/when the meme collection changes
+        // By setting this, we will be notified if/when the meme collection changes
         editMemeViewController.memeCollectionChangeListener = self
         
         self.present(editMemeViewController, animated: true)
         
     }
-    
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
